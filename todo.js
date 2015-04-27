@@ -19,7 +19,6 @@ $(document).ready(function(){
        this.addObjectToArray = function(obj){
            arrayOfObj.push(obj);
        }
-
    }
    //object for conversion and adding to cookie
    function Convert()
@@ -42,7 +41,16 @@ $(document).ready(function(){
            readEverything(parsedCookie);
        }
    }
-
+   function After()
+   {
+       this.afterRefresh = function(){
+           var parse = $.parseJSON($.cookie('todo2'));
+           $.each(parse, function(index, value){
+               list.prepend('<li id="member"><input type="checkbox">' + value.value + '<button class="delete">Delete</button></li>');
+           });
+       }
+   }
+    //events
     $('#add').on('click', function (event) {
         event.preventDefault();
         var  obj1    = new Check();
@@ -51,7 +59,15 @@ $(document).ready(function(){
         obj2.prepare();
         var obj3     = new Reading();
         obj3.readCookie();
+    });
 
+    $(document).on('click', '.delete', function(){
+        $(this).parent().remove();
+    });
+
+    $(function() {
+       var refresh = new After();
+       refresh.afterRefresh();
     });
 
 
