@@ -8,14 +8,10 @@ $(document).ready(function(){
     //events to be completed upon some action
     $('#add').on('click', function (event) {
         event.preventDefault();
-        utilsObj.isEmpty(input.val());
+        todo.callUtil(input.val())
     });
 
-    $(document).on('click', '.delete', function(){
-        $(this).parent().remove();
-    });
-    $('#clear').on('click', function() {
-        $('input:checked').parent().remove();
-    });
+    $(document).on('click', '.delete',todo.deleteNode);
+    $('#clear').on('click', todo.deleteChecked);
 
 });

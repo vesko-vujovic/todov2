@@ -6,8 +6,8 @@
 function Utils()
 {
     var msg              = $('#danger').hide();
-    var arrayOfObj       = [];
     var converted;
+    this.arrayOfObj       = [];
     this.obj;
 
     /**
@@ -23,7 +23,7 @@ function Utils()
         {
             msg.hide();
             this.createObject(input);
-            input.val('');
+            input = '';
         }
     };
     /**
@@ -43,7 +43,7 @@ function Utils()
      * @param obj - current object made my function above
      */
     this.addObjectToArray = function(obj){
-        arrayOfObj.push(obj);
+        this.arrayOfObj.push(obj);
     };
 
 }

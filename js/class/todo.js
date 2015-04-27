@@ -52,8 +52,9 @@ function Todo()
      * initialize functions of other Utils class - function
      * @param input - text value from form field
      */
-    this.callUtil = function(input){
+    this.callUtil       = function(input){
         utilsObj.isEmpty(input);
+        this.prepare(utilsObj.arrayOfObj);
     }
 
     /**
@@ -62,6 +63,7 @@ function Todo()
     this.deleteNode     = function(){
         $(this).parent().remove();
     }
+
     /**
      * function for deleting checked fields
      */
