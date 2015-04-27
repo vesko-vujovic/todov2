@@ -33,18 +33,24 @@ $(document).ready(function(){
 
    function Reading()
    {
-
+       this.readCookie = function(){
+         var parsedCookie = $.parseJSON($.cookie('todo2'));
+           function readEverything(parsed){
+               var lastOne = parsedCookie.pop();
+               list.prepend('<li id="member"><input type="checkbox">' + lastOne.value + '<button class="delete">Delete</button></li>');
+           }
+           readEverything(parsedCookie);
+       }
    }
-
-
-
-
 
     $('#add').on('click', function (event) {
         event.preventDefault();
         var  obj1    = new Check();
         obj1.isEmpty(input.val());
-        console.log(arrayOfObj);
+        var obj2     = new Convert();
+        obj2.prepare();
+        var obj3     = new Reading();
+        obj3.readCookie();
 
     });
 
