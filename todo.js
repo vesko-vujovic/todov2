@@ -9,7 +9,12 @@ $(document).ready(function(){
        this.inputVal     = input;
        this.message      = msg;
        this.arrayOfObj   = [];
-       this.obj
+       this.obj;
+       this.isEmpty      = function(){
+           this.inputVal == ''? msg.show(): create
+       };
+       this.createObject  = {name: 'input', value: ''+ this.inputVal  +''}
+
 
    }
 
