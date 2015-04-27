@@ -1,13 +1,14 @@
 $(document).ready(function(){
     //object that we need to initialize
-    var todoObj   = new Todo();
     var utilsObj  = new Utils();
+    var todoObj   = new Todo();
+    var input     = $('#todo');
     todoObj.afterRefresh();
 
     //events to be completed upon some action
     $('#add').on('click', function (event) {
         event.preventDefault();
-        utilsObj.isEmpty();
+        utilsObj.isEmpty(input.val());
         var arrayOfObj = utilsObj.getArrayOfObjects();
         todoObj.prepare(arrayOfObj);
 

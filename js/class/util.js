@@ -7,7 +7,6 @@ function Utils()
 {
     var msg              = $('#danger').hide();
     var list             = $('#list');
-    var input            = $('#todo');
     var arrayOfObj       = [];
     var converted;
     this.obj;
