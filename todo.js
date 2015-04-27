@@ -64,7 +64,9 @@ $(document).ready(function(){
     $(document).on('click', '.delete', function(){
         $(this).parent().remove();
     });
-
+    $('#clear').on('click', function(){
+        $('input:checked').parent().remove();
+    });
     $(function() {
        var refresh = new After();
        refresh.afterRefresh();
