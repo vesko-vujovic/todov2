@@ -8,15 +8,9 @@ $(document).ready(function(){
    {
        this.obj;
        this.isEmpty         = function(input){
-          if(input === '')
-          { msg.show()}
-          else
-          {
-            msg.hide();
-            this.createObject(input);
-          }
+          if(input === '') { msg.show()} else{ msg.hide(); this.createObject(input); }
        };
-       this.createObject    = function(input){
+       this.createObject   = function(input){
            this.obj        = new Object();
            this.obj.name   = "input";
            this.obj.value  = '' + input + '';
@@ -27,21 +21,21 @@ $(document).ready(function(){
        }
 
    }
-
    //object for conversion and adding to cookie
    function Convert()
    {
-       this.convert;
        this.prepare      = function(){
-          this.convert   = JSON.stringify(arrayOfObj);
-          this.addToCookie(this.convert);
-       },
-       this.addToCookie  = function(convertedArray){
-           $.cookie('todo2', convertedArray);
+          var convert    = JSON.stringify(arrayOfObj);
+          function addToCookie(convert){$.cookie('todo2', convert)};
+          addToCookie(convert);
        }
+   }
 
+   function Reading()
+   {
 
    }
+
 
 
 
@@ -50,8 +44,8 @@ $(document).ready(function(){
         event.preventDefault();
         var  obj1    = new Check();
         obj1.isEmpty(input.val());
+        console.log(arrayOfObj);
 
-        console.log(dataArr);
     });
 
 
