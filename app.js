@@ -1,6 +1,5 @@
 $(document).ready(function(){
     //object that we need to initialize
-    var utilsObj  = new Utils();
     var todo      = new Todo();
     todo.afterRefresh();
     var input     = $('#todo');

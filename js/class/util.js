@@ -10,7 +10,10 @@ function Utils()
     var converted;
     this.obj;
 
-    // function to validate field if there is a value continue and call next function
+    /**
+     * isEmpty() -  function to validate field if there is a value continue and call next function
+     * @param input - input text value from form field
+     */
     this.isEmpty         = function(input){
         if(input === '')
         {
@@ -26,7 +29,7 @@ function Utils()
     /**
      * This function create object and adds input value to a object property
      * Then we have a call to function that pushes that object on array
-     * @param input
+     * @param input - value of input field
      */
     this.createObject   = function(input){
         this.obj        = new Object();
@@ -35,15 +38,14 @@ function Utils()
         this.addObjectToArray(this.obj);
     };
 
-    //simple function to push object on array of other objects
+    /**
+     *
+     * @param obj - current object made my function above
+     */
     this.addObjectToArray = function(obj){
         arrayOfObj.push(obj);
-        this.passObjects();
     };
-    //pass array of objects to other script called todo
-    this.passObjects      = function(){
-        todoObj.prepare(arrayOfObj);
-    }
+
 }
 // end of the function
 

@@ -5,7 +5,7 @@ function Todo()
 {
     var cookieName       = 'bild';
     var list             = $('#list');
-    var todoObj          = new Utils();
+    var utilsObj          = new Utils();
 
     /**
      * this function is converting array of objects to string and adding them to cookie
@@ -13,7 +13,7 @@ function Todo()
      */
     this.prepare         = function(arrObj){
         /**
-         * @param converted  -  json string( array of objects)
+         * @param converted  - conversion to json string( array of objects)
          */
         var converted    = JSON.stringify(arrObj);
         function addToCookie(convert){$.cookie(''+ cookieName +'', convert)};
@@ -41,12 +41,32 @@ function Todo()
     //function that displays data from cookie after refreshing the page
     this.afterRefresh   = function(){
         /**
-         * @param parse - again parsing json string from cookie to array 
+         * @param parse - again parsing json string from cookie to array
          */
         var parse = $.parseJSON($.cookie(''+ cookieName +''));
         $.each(parse, function(index, value){
             list.prepend('<li id="member"><input type="checkbox">' + value.value + '<button class="delete">Delete</button></li>');
         });
     };
+    /**
+     * initialize functions of other Utils class - function
+     * @param input - text value from form field
+     */
+    this.callUtil = function(input){
+        utilsObj.isEmpty(input);
+    }
+
+    /**
+     * function that deletes node from DOM
+     */
+    this.deleteNode     = function(){
+        $(this).parent().remove();
+    }
+    /**
+     * function for deleting checked fields
+     */
+    this.deleteChecked  = function(){
+        $('input:checked').parent().remove();
+    }
 
 }
