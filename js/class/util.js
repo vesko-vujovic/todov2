@@ -6,7 +6,6 @@
 function Utils()
 {
     var msg              = $('#danger').hide();
-    var list             = $('#list');
     var arrayOfObj       = [];
     var converted;
     this.obj;
@@ -19,9 +18,9 @@ function Utils()
         }
         else
         {
-            input.empty();
             msg.hide();
             this.createObject(input);
+            input.val('');
         }
     };
     /**
@@ -39,11 +38,11 @@ function Utils()
     //simple function to push object on array of other objects
     this.addObjectToArray = function(obj){
         arrayOfObj.push(obj);
+        this.passObjects();
     };
-
-    //this function returns the value of global array
-    this.getArrayOfObjects = function(){
-        return arrayOfObj;
+    //pass array of objects to other script called todo
+    this.passObjects      = function(){
+        todoObj.prepare(arrayOfObj);
     }
 }
 // end of the function
