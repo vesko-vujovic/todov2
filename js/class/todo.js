@@ -12,9 +12,11 @@ function Todo()
      * @param arrObj - array of objects
      */
     this.prepare         = function(arrObj){
+
         /**
          * @param converted  - conversion to json string( array of objects)
          */
+
         var converted    = JSON.stringify(arrObj);
         function addToCookie(convert){$.cookie(''+ cookieName +'', convert)};
         addToCookie(converted);
@@ -33,7 +35,7 @@ function Todo()
          */
         function readEverything(parsed){
             var lastOne  = parsedCookie.pop();
-            list.prepend('<li id="member"><input type="checkbox">' + lastOne.value + '<button class="delete">Delete</button></li>');
+            list.prepend('<li><input type="checkbox">' + lastOne.value + '<button class="delete">Delete</button></li>');
         }
         readEverything(parsedCookie);
     };
@@ -42,8 +44,17 @@ function Todo()
     this.afterRefresh   = function(){
         /**
          * @param parse - again parsing json string from cookie to array
+         * @param fortuneCookie - initializing cookie
          */
-        var parse = $.parseJSON($.cookie(''+ cookieName +''));
+        var  fortuneCookie = $.cookie(''+ cookieName +'');
+        var  parse;
+
+        // if we have something in cookie only then parse cookie
+        if(fortuneCookie.length !== 0)
+        {
+            parse = $.parseJSON(fortuneCookie);
+        }
+
         /**
          * if parsed cookie is not empty show the result on the page
          */
