@@ -4,11 +4,11 @@ $(document).ready(function(){
     todo.afterRefresh();
     var input     = $('#todo');
 
-
     //events to be completed upon some action
     $('#add').on('click', function (event) {
         event.preventDefault();
         todo.callUtil(input.val())
+        input.val('');
     });
 
     $(document).on('click', '.delete',todo.deleteNode);

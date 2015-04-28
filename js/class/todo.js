@@ -44,9 +44,15 @@ function Todo()
          * @param parse - again parsing json string from cookie to array
          */
         var parse = $.parseJSON($.cookie(''+ cookieName +''));
-        $.each(parse, function(index, value){
-            list.prepend('<li id="member"><input type="checkbox">' + value.value + '<button class="delete">Delete</button></li>');
-        });
+        /**
+         * if parsed cookie is not empty show the result on the page
+         */
+        if( parse.length > 0)
+        {
+            $.each(parse, function (index, value) {
+                list.prepend('<li id="member"><input type="checkbox">' + value.value + '<button class="delete">Delete</button></li>');
+            });
+        }
     };
     /**
      * initialize functions of other Utils class - function
