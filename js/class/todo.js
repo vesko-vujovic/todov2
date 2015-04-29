@@ -13,60 +13,33 @@ function Todo()
      */
     this.prepare         = function(arrObj){
 
-        /**
-         * @param converted  - conversion to json string( array of objects)
-         */
-
+        //converted  - is array of object converted to json string
         var converted    = JSON.stringify(arrObj);
-        function addToCookie(convert){$.cookie(''+ cookieName +'', convert)};
-        addToCookie(converted);
+        this.addToCookie(converted);
+    };
+
+    /**
+     * This is a simple functions that puts everything in cookie
+     * @param converted - is converted array of objects to json ready to be added to cookie
+     */
+    this.addToCookie     = function(converted){
+        var add = $.cookie(''+ cookieName +'', converted);
         this.readTheCookie();
     };
 
-    //this is function in function it display an element from cookie
+    //this function will display the data from the cookie, the last element in cookie
     this.readTheCookie   = function(){
-        /**
-         * @param parsedCookie  - converted json string to objects
-         */
+
         var parsedCookie = $.parseJSON($.cookie(''+ cookieName +''));
-
-        /**
-         * @param parsed - parsed json string to array
-         */
-        function readEverything(parsed){
-            var lastOne  = parsed.pop();
-            var output   = this.helperMustache('templates/template.html #fill', '#templates','fill', lastOne);
-            list.prepend(output);
-        }
-        readEverything(parsedCookie);
+        var output       = this.helperMustache("templates/template.thml #fill","fill", parsedCookie.pop());
+        list.prepend(output);
     };
 
-    //function that displays data from cookie after refreshing the page
+    //function that reads all data from cookie when page refreshes
     this.afterRefresh   = function(){
-        /**
-         * @param parse - again parsing json string from cookie to array
-         * @param fortuneCookie - initializing cookie
-         */
-        var  fortuneCookie = $.cookie(''+ cookieName +'');
-        var  parse;
-
-        // if we have something in cookie only then parse cookie
-        if(fortuneCookie.length !== 0)
-        {
-            parse = $.parseJSON(fortuneCookie);
-        }
-
-        /**
-         * if parsed cookie is not empty show the result on the page
-         * first we call helper function to render our template
-         */
-        if( parse.length > 0)
-        {
-            //calling helper class to render view with all data
-           var output = this.helperMustache('templates/template.html #fill', 'fill', parse);
-           list.prepend(output);
-        }
+       var cookie       = $.parseJSON($.cookie(''+ cookieName +''));
     };
+
     /**
      * initialize functions of other Utils class - function
      * @param input - text value from form field
@@ -75,25 +48,23 @@ function Todo()
         utilsObj.isEmpty(input);
         this.prepare(utilsObj.arrayOfObj);
     };
+
     /**
      * this is helper function to call rendering method of mustache
+     * @param url - the url to load the document
+     * @param templateId - id of external file template
      */
     this.helperMustache         = function(url, tempateId, data){
-        /**
-         * @param  url        - url that we need for $.load function
-         * @param  target     - the place where we dump all data from $.load function
-         * @param  output     - the rendered template
-         * @param  data       - data for template
-         * @param  templateId - id of external template
-         */
+
+       // assigning parameters to variables
        var url          = url;
        var templateId   = tempateId;
        var data         = data;
        var output;
 
-        $("templates").load(''+ url + '', function(){
+        $("#templates").load(""+ url +"", function(){
             var template = document.getElementById(''+ tempateId +'').innerHTML;
-            var output = Mustache.render(url, data);
+            var output = Mustache.render(template, data);
         });
         return output;
     }
