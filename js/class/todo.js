@@ -35,7 +35,11 @@ function Todo()
          */
         function readEverything(parsed){
             var lastOne  = parsedCookie.pop();
-            list.prepend('<li><input type="checkbox">' + lastOne.value + '<button class="delete">Delete</button></li>');
+            $("#templates").load("templates/template.html #fill",function(){
+                var template = document.getElementById('fill').innerHTML;
+                var output = Mustache.render(template, lastOne);
+                list.prepend(output);
+            });
         }
         readEverything(parsedCookie);
     };
@@ -61,7 +65,7 @@ function Todo()
         if( parse.length > 0)
         {
             $.each(parse, function (index, value) {
-                list.prepend('<li id="member"><input type="checkbox">' + value.value + '<button class="delete">Delete</button></li>');
+                list.prepend('<li ><input type="checkbox">' + value.value + '<button class="delete">Delete</button></li>');
             });
         }
     };
