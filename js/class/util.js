@@ -5,8 +5,9 @@
 function Utils()
 {
     //variables for this function
-    var msg              = $('#danger').hide();
+    var msg               = $('#danger').hide();
     var converted;
+    var list             = $('#list');
     this.arrayOfObj       = [];
     this.obj;
 
@@ -54,6 +55,7 @@ function Utils()
         $("#templates").load(""+ url +"", function(){
             var template = document.getElementById(''+ tempateId +'').innerHTML;
             var output = Mustache.render(template, data);
+            list.empty();
             list.prepend(output);
         });
 
@@ -74,11 +76,13 @@ function Utils()
 /**
  * Adapter function for switching storage between cookie and database
  * @param - string
+ * @param - text value from input field
  */
-function Adapt(storage)
+function Adapt(storage, input)
 {
     // variable that sets way of storage
     var storage       = storage;
+    var input         = input;
 
     //Objects initialization
     this.todoObj       = new Todo();
@@ -86,17 +90,20 @@ function Adapt(storage)
 
     //function that delegates which delete method to call
     this.deleteNode    = function(){
-       storage === 'cookie'? todoObj.deleteNode(): databaseObj.deleteElement();
+       storage === 'cookie' ? todoObj.deleteNode(): databaseObj.deleteElement();
     };
 
     //function that delegates which delete method to call
     this.deleteSelected = function(){
-
+       storage === 'cookie' ? this.todoObj.deleteChecked() : databaseObj.deleteSelection();
     };
 
     //adds input field value to cookie or to database
     this.addInput       = function(){
+       if( input === 'cookie')
+       {
 
+       }
     };
 
     //display data after reload with cookie or with database

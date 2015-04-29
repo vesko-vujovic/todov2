@@ -4,7 +4,6 @@
 function Todo()
 {
     var cookieName       = 'bild';
-    var list             = $('#list');
     this.utilsObj          = new Utils();
 
     /**
@@ -24,36 +23,16 @@ function Todo()
      */
     this.addToCookie     = function(converted){
         var add = $.cookie(''+ cookieName +'', converted);
-        this.readTheCookie();
+        this.getTheCookie();
     };
 
     //this function will display the data from the cookie, the last element in cookie
-    this.readTheCookie   = function(){
+    this.getTheCookie   = function(){
 
         var parsedCookie = $.parseJSON($.cookie(''+ cookieName +''));
-        var output       = this.helperMustache("templates/template.html #fill","fill", parsedCookie.pop());
+        var output       = this.utilsObj.helperMustache("templates/template.html #fill","fill", parsedCookie.pop());
     };
 
-    //function that reads all data from cookie when page refreshes
-    this.afterRefresh   = function(){
-       var parsedCookie       = $.parseJSON($.cookie(''+ cookieName +''));
-
-       if(parsedCookie.length > 0)
-       {
-           var output       = this.helperMustache("templates/template.html #after","after",{arr:parsedCookie} );
-           console.log(output);
-           list.prepend(output);
-       }
-   };
-
-    /**
-     * initialize functions of other Utils class - function
-     * @param input - text value from form field
-     */
-    this.callUtil       = function(input){
-        utilsObj.isEmpty(input);
-        this.prepare(utilsObj.arrayOfObj);
-    };
 
     // deletes a node from the DOM
     this.deleteNode     = function(){
