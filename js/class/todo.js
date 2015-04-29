@@ -34,12 +34,8 @@ function Todo()
          * @param parsed - parsed json string to array
          */
         function readEverything(parsed){
-            var lastOne  = parsedCookie.pop();
-            $("#templates").load("templates/template.html #fill",function(){
-                var template = document.getElementById('fill').innerHTML;
-                var output = Mustache.render(template, lastOne);
-                list.prepend(output);
-            });
+            var lastOne  = parsed.pop();
+            this.helperMustache('templates/template.html #fill', '#templates','fill', lastOne);
         }
         readEverything(parsedCookie);
     };
@@ -61,12 +57,12 @@ function Todo()
 
         /**
          * if parsed cookie is not empty show the result on the page
+         * first we call helper function to render our template
          */
         if( parse.length > 0)
         {
-            $.each(parse, function (index, value) {
-                list.prepend('<li ><input type="checkbox">' + value.value + '<button class="delete">Delete</button></li>');
-            });
+            //calling helper class to render view with all data
+            this.helperMustache('templates/template.html #fill', '#templates','fill', parse);
         }
     };
     /**
@@ -76,8 +72,30 @@ function Todo()
     this.callUtil       = function(input){
         utilsObj.isEmpty(input);
         this.prepare(utilsObj.arrayOfObj);
-    }
+    };
+    /**
+     * this is helper function to call rendering method of mustache
+     */
+    this.helperMustache         = function(url, target, tempateId, data){
+        /**
+         * @param  url        - url that we need for $.load function
+         * @param  target     - the place where we dump all data from $.load function
+         * @param  output     - the rendered template
+         * @param  data       - data for template
+         * @param  templateId - id of external template
+         */
+       var url          = url;
+       var target       = target;
+       var templateId   = tempateId;
+       var data         = data;
+       var output;
 
+        $(''+ target + '').load(''+ url + '', function(){
+            var template = document.getElementById(''+ tempateId +'').innerHTML;
+            var output = Mustache.render(template, data);
+            list.prepend(output);
+        });
+    }
     /**
      * function that deletes node from DOM
      */
