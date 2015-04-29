@@ -5,7 +5,7 @@ function Todo()
 {
     var cookieName       = 'bild';
     var list             = $('#list');
-    var utilsObj          = new Utils();
+    this.utilsObj          = new Utils();
 
     /**
      * this function is converting array of objects to string and adding them to cookie
@@ -53,27 +53,6 @@ function Todo()
     this.callUtil       = function(input){
         utilsObj.isEmpty(input);
         this.prepare(utilsObj.arrayOfObj);
-    };
-
-    /**
-     * this is helper function to call rendering method of mustache
-     * @param url - the url to load the document
-     * @param templateId - id of external file template
-     */
-    this.helperMustache         = function(url, tempateId, data){
-
-       // assigning parameters to variables
-       var url          = url;
-       var templateId   = tempateId;
-       var data         = data;
-       var output;
-
-        $("#templates").load(""+ url +"", function(){
-            var template = document.getElementById(''+ tempateId +'').innerHTML;
-            var output = Mustache.render(template, data);
-            list.prepend(output);
-        });
-
     };
 
     // deletes a node from the DOM

@@ -1,10 +1,10 @@
 /**
  * Function - class
  * this function crates object, pushes object to array checks if field is empty etc
- *
  */
 function Utils()
 {
+    //variables for this function
     var msg              = $('#danger').hide();
     var converted;
     this.arrayOfObj       = [];
@@ -18,12 +18,12 @@ function Utils()
         if(input === '')
         {
             msg.show();
+            return true;
         }
         else
         {
             msg.hide();
-            this.createObject(input);
-            input = '';
+            return false;
         }
     };
     /**
@@ -39,7 +39,28 @@ function Utils()
     };
 
     /**
-     *
+     * this is helper function to call rendering method of mustache
+     * @param url - the url to load the document
+     * @param templateId - id of external file template
+     */
+    this.helperMustache         = function(url, tempateId, data){
+
+        // assigning parameters to variables
+        var url          = url;
+        var templateId   = tempateId;
+        var data         = data;
+        var output;
+
+        $("#templates").load(""+ url +"", function(){
+            var template = document.getElementById(''+ tempateId +'').innerHTML;
+            var output = Mustache.render(template, data);
+            list.prepend(output);
+        });
+
+    };
+
+    /**
+     * This function adds object to array
      * @param obj - current object made my function above
      */
     this.addObjectToArray = function(obj){
@@ -48,4 +69,21 @@ function Utils()
 
 }
 // end of the function
+
+
+/**
+ * Adapter function for switching storage between cookie and database
+ */
+
+
+function Adapt(storage)
+{
+    var storage = storage;
+
+
+
+
+
+}
+
 
