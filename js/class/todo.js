@@ -35,7 +35,8 @@ function Todo()
          */
         function readEverything(parsed){
             var lastOne  = parsed.pop();
-            this.helperMustache('templates/template.html #fill', '#templates','fill', lastOne);
+            var output   = this.helperMustache('templates/template.html #fill', '#templates','fill', lastOne);
+            list.prepend(output);
         }
         readEverything(parsedCookie);
     };
@@ -62,7 +63,8 @@ function Todo()
         if( parse.length > 0)
         {
             //calling helper class to render view with all data
-            this.helperMustache('templates/template.html #fill', '#templates','fill', parse);
+           var output = this.helperMustache('templates/template.html #fill', 'fill', parse);
+           list.prepend(output);
         }
     };
     /**
@@ -76,7 +78,7 @@ function Todo()
     /**
      * this is helper function to call rendering method of mustache
      */
-    this.helperMustache         = function(url, target, tempateId, data){
+    this.helperMustache         = function(url, tempateId, data){
         /**
          * @param  url        - url that we need for $.load function
          * @param  target     - the place where we dump all data from $.load function
@@ -85,16 +87,15 @@ function Todo()
          * @param  templateId - id of external template
          */
        var url          = url;
-       var target       = target;
        var templateId   = tempateId;
        var data         = data;
        var output;
 
-        $(''+ target + '').load(''+ url + '', function(){
+        $("templates").load(''+ url + '', function(){
             var template = document.getElementById(''+ tempateId +'').innerHTML;
-            var output = Mustache.render(template, data);
-            list.prepend(output);
+            var output = Mustache.render(url, data);
         });
+        return output;
     }
     /**
      * function that deletes node from DOM
