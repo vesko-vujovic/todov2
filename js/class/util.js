@@ -73,12 +73,24 @@ function Utils()
 
 /**
  * Adapter function for switching storage between cookie and database
+ * @param - string
  */
-
-
 function Adapt(storage)
 {
+    // variable that sets way of storage
     var storage = storage;
+    var todoObj = new Todo();
+
+    //function that delegates which delete method to call
+    this.deleteNode    = function(){
+       storage === 'cookie'?
+    };
+
+    //function that delegates which delete method to call
+    this.deleteSelected = function(){
+
+    };
+
 
 
 

@@ -64,5 +64,10 @@ function Todo()
     this.deleteChecked  = function(){
         $('input:checked').parent().remove();
     }
+}
+
+//Class - Functions for dealing with database storage
+function DatabaseStorage()
+{
 
 }
