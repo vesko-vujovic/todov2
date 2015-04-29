@@ -7,8 +7,15 @@
             <button class="delete">Delete</button>
         </li>
     </script>
+    
     <!-- this is all data from the cookie -->
-    <script id="all" type="text/html">
+    <script id="after" type="text/html">
+        {{#arr}}
+          <li>
+              <input type="checkbox"> {{value}}
+              <button class="delete">Delete</button>
+          </li>
+        {{/arr}}
 
     </script>
 

@@ -40,7 +40,8 @@ function Todo()
 
        if(parsedCookie.length > 0)
        {
-           var output       = this.helperMustache("templates/template.html #fill","fill", parsedCookie);
+           var output       = this.helperMustache("templates/template.html #after","after",{arr:parsedCookie} );
+           console.log(output);
            list.prepend(output);
        }
    };
