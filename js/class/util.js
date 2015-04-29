@@ -78,18 +78,32 @@ function Utils()
 function Adapt(storage)
 {
     // variable that sets way of storage
-    var storage = storage;
-    var todoObj = new Todo();
+    var storage       = storage;
+
+    //Objects initialization
+    this.todoObj       = new Todo();
+    var databaseObj   = new DatabaseStorage();
 
     //function that delegates which delete method to call
     this.deleteNode    = function(){
-       storage === 'cookie'?
+       storage === 'cookie'? todoObj.deleteNode(): databaseObj.deleteElement();
     };
 
     //function that delegates which delete method to call
     this.deleteSelected = function(){
 
     };
+
+    //adds input field value to cookie or to database
+    this.addInput       = function(){
+
+    };
+
+    //display data after reload with cookie or with database
+    this.afterReload    = function(){
+
+    };
+
 
 
 
