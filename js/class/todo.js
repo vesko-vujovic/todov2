@@ -32,7 +32,6 @@ function Todo()
 
         var parsedCookie = $.parseJSON($.cookie(''+ cookieName +''));
         var output       = this.helperMustache("templates/template.html #fill","fill", parsedCookie.pop());
-        list.prepend(output);
     };
 
     //function that reads all data from cookie when page refreshes
@@ -71,9 +70,9 @@ function Todo()
         $("#templates").load(""+ url +"", function(){
             var template = document.getElementById(''+ tempateId +'').innerHTML;
             var output = Mustache.render(template, data);
+            list.prepend(output);
         });
-        console.log(output);
-        return output;
+
     };
 
     // deletes a node from the DOM
