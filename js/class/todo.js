@@ -31,14 +31,20 @@ function Todo()
     this.readTheCookie   = function(){
 
         var parsedCookie = $.parseJSON($.cookie(''+ cookieName +''));
-        var output       = this.helperMustache("templates/template.thml #fill","fill", parsedCookie.pop());
+        var output       = this.helperMustache("templates/template.html #fill","fill", parsedCookie.pop());
         list.prepend(output);
     };
 
     //function that reads all data from cookie when page refreshes
     this.afterRefresh   = function(){
-       var cookie       = $.parseJSON($.cookie(''+ cookieName +''));
-    };
+       var parsedCookie       = $.parseJSON($.cookie(''+ cookieName +''));
+
+       if(parsedCookie.length > 0)
+       {
+           var output       = this.helperMustache("templates/template.html #fill","fill", parsedCookie);
+           list.prepend(output);
+       }
+   };
 
     /**
      * initialize functions of other Utils class - function
@@ -66,18 +72,16 @@ function Todo()
             var template = document.getElementById(''+ tempateId +'').innerHTML;
             var output = Mustache.render(template, data);
         });
+        console.log(output);
         return output;
-    }
-    /**
-     * function that deletes node from DOM
-     */
+    };
+
+    // deletes a node from the DOM
     this.deleteNode     = function(){
         $(this).parent().remove();
     }
 
-    /**
-     * function for deleting checked fields
-     */
+    //delete checked values
     this.deleteChecked  = function(){
         $('input:checked').parent().remove();
     }
