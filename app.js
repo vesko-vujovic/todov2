@@ -11,7 +11,9 @@ $(document).ready(function(){
         input.val('');
     });
     //delete task event
-    $(document).on('click','.delete', todoObject.adapter.deleteNode)
+    $(document).on('click','.delete', function(){
+        todoObject.deleteOneTask(this);
+    })
 
 
 });
