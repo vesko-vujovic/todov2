@@ -8,12 +8,17 @@ function Todo()
     var adapterType        = 'cookie';
     var state;
     var url;
+    var templateId;
     var returnedVal;
     this.utilsObj          = new Utils();
     this.adapter           = new Adapter(adapterType);
 
     //assign the right url for Mustache templating engine based on adapter type
-    adapterType === 'cookie' ? url = 'templates/template.html #after': url = 'templates/template.html #after';
+    adapterType === 'cookie' ? url = 'templates/template.html #after': url = 'templates/template.html #ajax1';
+
+    //same thing with template id we have 2 different ids for cookie and for ajax template
+    adapterType === 'cookie' ? templateId = 'after': url = 'ajax1';
+
 
     /**
      * this function first checks if we have something in the field, if we do then call main Adapter add function
@@ -27,13 +32,14 @@ function Todo()
       if(state !== true)
       {
          returnedVal = this.adapter.addTask(input);
+         this.renderView(returnedVal)
 
       }
 
     };
 
     this.renderView       = function(data){
-      this.utilsObj.helperMustache('templates')
+      this.utilsObj.helperMustache(url, templateId, returnedVal);
     };
 
 }
