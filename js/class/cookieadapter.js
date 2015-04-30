@@ -82,5 +82,5 @@ function CookieAdapter()
        parsedCookie  = $.parseJSON($.cookie(''+ cookieName +''));
        return parsedCookie;
     };
-    
+
 }

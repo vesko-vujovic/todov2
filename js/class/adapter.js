@@ -20,6 +20,7 @@ function Adapter(adapterType)
        else
        {
           var value =  dbAdapter.addTask(input);
+          console.log(value);
           return value;
        }
     };

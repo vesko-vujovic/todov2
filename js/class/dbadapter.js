@@ -3,9 +3,25 @@
  */
 function DatabaseAdapter()
 {
+    //global varijables
+    var utilObj   = new Utils();
+    var value;
 
   //adding a task to the database
-  this.addTask           = function() {
+  this.addTask           = function(input) {
+      $.ajax({
+          url: "/todoback/public/ajax/post/data",
+          data: "input=" + input,
+          dataType: "json",
+          success: function(data)
+          {
+              value = data;
+          }
+
+      });
+      console.log(value);
+      return value;
+
 
   };
 
