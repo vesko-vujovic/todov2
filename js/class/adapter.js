@@ -7,12 +7,11 @@ function Adapter(adapterName)
     var db       = new DatabaseAdapter();
     var cookie   = new CookieAdapter();
 
-
-
+    //type of adapter
     var adapter = adapterName;
 
     //function that will delegate which adapter to call
-    this.addTask          = function(){
+    this.addTask          = function(input){
 
     };
 
@@ -26,5 +25,14 @@ function Adapter(adapterName)
 
     }
 
+    // deletes a node from the DOM
+    this.deleteNode     = function(){
+        $(this).parent().remove();
+    }
+
+    //delete checked values from the DOM
+    this.deleteChecked  = function(){
+        $('input:checked').parent().remove();
+    }
 
 }

@@ -1,6 +1,6 @@
 $(document).ready(function(){
     //object that we need to initialize
-    var adapter     = new Adapt();
+    var adapter     = new Todo();
 
     var input     = $('#todo');
 

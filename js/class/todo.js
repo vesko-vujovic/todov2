@@ -3,28 +3,10 @@
  */
 function Todo()
 {
-    var cookieName       = 'bild';
+    var cookieName         = 'bild';
     this.utilsObj          = new Utils();
+    this.adapter           = new Adapter('cookie');
 
-    /**
-     * this function is converting array of objects to string and adding them to cookie
-     * @param arrObj - array of objects
-     */
-    this.prepare         = function(arrObj){
-
-        //converted  - is array of object converted to json string
-        var converted    = JSON.stringify(arrObj);
-        this.addToCookie(converted);
-    };
-
-    /**
-     * This is a simple functions that puts everything in cookie
-     * @param converted - is converted array of objects to json ready to be added to cookie
-     */
-    this.addToCookie     = function(converted){
-        var add = $.cookie(''+ cookieName +'', converted);
-        this.getTheCookie();
-    };
 
     //this function will display the data from the cookie, the last element in cookie
     this.getTheCookie   = function(){
@@ -33,15 +15,5 @@ function Todo()
         var output       = this.utilsObj.helperMustache("templates/template.html #fill","fill", parsedCookie.pop());
     };
 
-
-    // deletes a node from the DOM
-    this.deleteNode     = function(){
-        $(this).parent().remove();
-    }
-
-    //delete checked values
-    this.deleteChecked  = function(){
-        $('input:checked').parent().remove();
-    }
 }
 
