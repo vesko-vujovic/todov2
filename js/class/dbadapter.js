@@ -5,23 +5,19 @@ function DatabaseAdapter()
 {
     //global varijables
     var utilObj   = new Utils();
-    this.value;
+    var value;
 
   //adding a task to the database
   this.addSingleTask           = function(input) {
       $.ajax({
-          async: false,
           url: "/todoback/public/ajax/post/data",
           data: "input=" + input,
-          dataType: "json",
-          success: function(data)
-          {
-              this.value = data;
-          }
-
-      });
-
-      console.log(this.value);
+          dataType: "json"
+      }).done(function(data) {
+              value = data;
+          });
+      console.log(value);
+      return value;
 
   };
 
