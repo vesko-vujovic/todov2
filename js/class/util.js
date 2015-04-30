@@ -82,60 +82,9 @@ function Utils()
     };
 
 }
-// end of the function
-
-
-/**
- * Adapter function for switching storage between cookie and database
- * @param - string
- * @param - text value from input field
- */
-function Adapt(storage, input)
-{
-    // variable that sets way of storage
-    var storage          = storage;
-    var inputVal         = input;
-    var state;
-
-    //Objects initialization
-    this.todoObj       = new Todo();
-    this.utilObj       = new Utils();
-    var databaseObj    = new DatabaseStorage();
-
-    //function that delegates which delete method to call
-    this.deleteNode    = function(){
-       storage === 'cookie' ? todoObj.deleteNode(): databaseObj.deleteElement();
-    };
-
-    //function that delegates which delete method to call
-    this.deleteSelected = function(){
-       storage === 'cookie' ? this.todoObj.deleteChecked() : databaseObj.deleteSelection();
-    };
-
-    //adds input field value to cookie or to database
-    this.addInput       = function(){
-       if( storage === 'cookie')
-       {
-           this.utilObj.callThem(inputVal);
-       }
-       else
-       {
-           databaseObj.addToDatabase(inputVal);
-
-       }
-    };
-
-    //display data after reload with cookie or with database
-    this.afterReload    = function(){
-
-    };
 
 
 
 
-
-
-
-}
 
 

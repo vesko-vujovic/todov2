@@ -45,31 +45,3 @@ function Todo()
     }
 }
 
-//Class - Functions for dealing with database storage
-function DatabaseStorage()
-{
-    //initialize adapter object
-    var adapter   = new Adapt();
-
-    //ajax request for deleting one element
-    this.deleteElement     = function(){
-
-    };
-
-    //ajax request for deleting selected elements
-    this.deleteSelection   = function(){
-
-    };
-
-    //ajax request for loading data after refresh
-    this.loadAfterRefresh  = function(){
-
-    };
-
-    //add input to database
-    this.addToDatabase    = function(){
-
-    };
-
-
-}
