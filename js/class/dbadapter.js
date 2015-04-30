@@ -12,12 +12,15 @@ function DatabaseAdapter()
       $.ajax({
           url: "/todoback/public/ajax/post/data",
           data: "input=" + input,
-          dataType: "json"
-      }).done(function(data) {
-              value = data;
-          });
-      console.log(value);
-      return value;
+          dataType: "json",
+          success: getData
+      });
+
+      function getData(data)
+      {
+         value = data;
+      }
+      console.log(this.value);
 
   };
 
