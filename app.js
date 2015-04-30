@@ -1,6 +1,7 @@
 $(document).ready(function(){
     //object that we need to initialize
     var todoObject    = new Todo();
+    todoObject.afterRefresh();
     var input     = $('#todo');
 
     //events on actions

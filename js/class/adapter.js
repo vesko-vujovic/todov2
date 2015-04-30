@@ -32,7 +32,15 @@ function Adapter(adapterType)
     //calling adapter delete method for checked checkboxes
     this.deleteCompleted = function(){
 
-    }
+    };
+
+    this.after           = function(){
+        if(adapterType === 'cookie')
+        {
+            var value = cookieAdapter.readTheCookie();
+            return value;
+        }
+    };
 
     // deletes a node from the DOM
     this.deleteNode     = function(){

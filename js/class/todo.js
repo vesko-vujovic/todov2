@@ -38,9 +38,17 @@ function Todo()
 
     };
 
+    //display data on screen
     this.renderView       = function(data){
       this.utilsObj.helperMustache(url, templateId, returnedVal);
     };
 
+    //this is a function that will call the display function data after reload
+    this.afterRefresh     = function(){
+       returnedVal = this.adapter.after();
+        console.log(returnedVal);
+       this.renderView(returnedVal);
+
+    }
 }
 

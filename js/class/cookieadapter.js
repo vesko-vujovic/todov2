@@ -79,8 +79,8 @@ function CookieAdapter()
     };
 
     this.readTheCookie   = function(){
-
        parsedCookie  = $.parseJSON($.cookie(''+ cookieName +''));
+       return parsedCookie;
     };
 
 
