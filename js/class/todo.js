@@ -10,7 +10,11 @@ function Todo()
     this.adapter           = new Adapter('cookie');
 
 
-    //add function that will call adapter function and then he will call right adapter (cookie or database)
+    /**
+     * this function first checks if we have something in the field, if we do then call main Adapter add function
+     * from there adapter will call storage adapter or database adapter
+     * @param input - text value from input field
+     */
     this.callAdd           = function (input) {
 
       state =  this.utilsObj.isEmpty(input);
