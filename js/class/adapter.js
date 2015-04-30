@@ -1,5 +1,5 @@
 /**
- * General adapter that will call cookie or database adapter based on parameter that is passed
+ * General Adapter that will call cookie or database adapter based on parameter that is passed
  */
 function Adapter(adapterType)
 {
@@ -8,7 +8,7 @@ function Adapter(adapterType)
     var cookieAdapter   = new CookieAdapter();
 
     //type of adapter
-    var adapterType = adapterType;
+    var adapterType     = adapterType;
 
     //function that will delegate which adapter to call
     this.addTask          = function(input){
@@ -22,11 +22,6 @@ function Adapter(adapterType)
           var value =  dbAdapter.addTask(input);
           return value;
        }
-    };
-
-    //function that will delegate which adapter delete method to call
-    this.deleteTask       = function(){
-
     };
 
     //calling adapter delete method for checked checkboxes
@@ -47,16 +42,26 @@ function Adapter(adapterType)
     };
 
     // deletes a node from the DOM
+    //@param object - this is event listener object which is carrying DOM node
     this.deleteNode     = function(object){
         if(adapterType === 'cookie')
         {
             cookieAdapter.deleteTask(object);
         }
+        else
+        {
+
+        }
+
     }
 
     //delete checked values from the DOM
-    this.deleteChecked  = function(){
-        $('input:checked').parent().remove();
+    this.deleteChecked  = function(object){
+        if(adapterType === 'cookie')
+        {
+            cookieAdapter.deleteCompleted(object);
+        }
+
     }
 
 }

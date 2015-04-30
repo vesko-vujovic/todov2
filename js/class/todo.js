@@ -41,7 +41,12 @@ function Todo()
     //delete task if we have cookie adapter then i need to pass event object
     this.deleteOneTask     = function (object) {
 
-           this.adapter.deleteNode(object);
+        this.adapter.deleteNode(object);
+    };
+
+    //delete selected tasks
+    this.deleteSelection   = function(object){
+        this.adapter.deleteChecked(object);
     };
 
 

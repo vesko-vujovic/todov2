@@ -25,8 +25,8 @@ function CookieAdapter()
     };
 
     //delete checked tasks
-    this.deleteCompleted        = function(){
-
+    this.deleteCompleted        = function(object){
+        $('input:checked').parent().remove();
     };
 
     /**

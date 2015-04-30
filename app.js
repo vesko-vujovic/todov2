@@ -14,6 +14,10 @@ $(document).ready(function(){
     $(document).on('click','.delete', function(){
         todoObject.deleteOneTask(this);
     })
+    //delete selected tasks
+    $('#clear').on('click', function(){
+        todoObject.deleteSelection(this);
+    });
 
 
 });
