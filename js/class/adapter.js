@@ -19,7 +19,7 @@ function Adapter(adapterType)
        }
        else
        {
-          var value =  dbAdapter.addTask(input);
+          var value =  dbAdapter.addSingleTask(input);
           console.log(value);
           return value;
        }
