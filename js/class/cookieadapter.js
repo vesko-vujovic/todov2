@@ -20,7 +20,7 @@ function CookieAdapter()
     };
 
     //deleting specified node
-    this.deleteTask             = function(){
+    this.deleteTask             = function(e){
         $(this).parent().remove();
     };
 

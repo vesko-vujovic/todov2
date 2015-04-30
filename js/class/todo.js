@@ -38,6 +38,13 @@ function Todo()
 
     };
 
+    //delete task
+    this.deleteOneTask     = function () {
+       this.adapter.deleteNode();
+    };
+
+
+
     //display data on screen
     this.renderView       = function(data){
       this.utilsObj.helperMustache(url, templateId, returnedVal);
