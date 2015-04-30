@@ -18,11 +18,21 @@ function DatabaseAdapter()
 
       function getData(data)
       {
-          console.log(data);
+          setData(data);
       }
 
-
+      console.log(value);
   };
+
+    /**
+     *  I need this function to set data from ajax response to my global variable because
+     *  ajax is asynchronous, the only way is to make it non-asynchronous but that not recomendable
+     *  and deprecated
+     */
+  function setData(data){
+      value = data;
+      return
+  }
 
 
 
