@@ -19,6 +19,7 @@ function DatabaseAdapter()
       function getData(data)
       {
           setData(data);
+          return;
       }
 
       console.log(value);
@@ -31,7 +32,7 @@ function DatabaseAdapter()
      */
   function setData(data){
       value = data;
-      return
+      return;
   }
 
 
