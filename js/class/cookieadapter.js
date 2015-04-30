@@ -3,13 +3,18 @@
  */
 function CookieAdapter()
 {
+    //our global variables
+    var cookieName        = 'bild';
     this.arrayOfObj       = [];
     this.obj;
     var utilObj = new Utils();
 
-    //this function will call other fnctions that we need for adding task to cookie
+    //this function will call other functions that we need for adding task to cookie
     this.addTaskSteps           = function(input) {
 
+        //these are json objects returned from last function readcookie
+       var valueOfCookie = this.createObject(input);
+       console.log(valueOfCookie);
     };
 
     //deleting specified node
@@ -21,7 +26,7 @@ function CookieAdapter()
     this.deleteCompleted        = function(){
 
     };
-    
+
     /**
      * These section is for preparing array of objects to be added into the cookie
      * Here we have functions that will create oobjects, push them on array,
@@ -29,6 +34,56 @@ function CookieAdapter()
      * after that we pass json object to Adapter and adapter to other functions that know how to
      * render those data.
      */
+
+    /**
+     * This function create object and adds input value to a object property
+     * Then we have a call to function that pushes that object on array
+     * @param input - value of input field
+     */
+    this.createObject   = function(input){
+        this.obj        = new Object();
+        this.obj.name   = "input";
+        this.obj.value  = '' + input + '';
+        this.addObjectToArray(this.obj);
+    };
+
+    /**
+     *
+     * @param obj - current object made my function above
+     */
+    this.addObjectToArray = function(obj){
+        this.arrayOfObj.push(obj);
+        this.prepare(this.arrayOfObj);
+    };
+
+    /**
+     * this function is converting array of objects to string and adding them to cookie
+     * @param arrObj - array of objects
+     */
+    this.prepare         = function(arrObj){
+
+        //converted  - is array of object converted to json string
+        var converted    = JSON.stringify(arrObj);
+        this.addToCookie(converted);
+    };
+
+    /**
+     * This is a simple functions that puts everything in cookie
+     * @param converted - is converted array of objects to json ready to be added to cookie
+     */
+    this.addToCookie     = function(converted){
+        var add = $.cookie(''+ cookieName +'', converted);
+        this.readTheCookie();
+    };
+
+    this.readTheCookie   = function(){
+
+        var parsedCookie = $.parseJSON($.cookie(''+ cookieName +''));
+        return parsedCookie;
+
+        console.log(parsedCookie)
+
+    };
 
 
 
