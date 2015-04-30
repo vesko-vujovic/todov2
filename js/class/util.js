@@ -8,6 +8,7 @@ function Utils()
     var msg               = $('#danger').hide();
     var converted;
     var list             = $('#list');
+    var state;
     this.arrayOfObj       = [];
     this.obj;
 
@@ -39,6 +40,17 @@ function Utils()
         this.addObjectToArray(this.obj);
     };
 
+    //function that will call  all other functions (createObject and addObjectToArray)
+    this.callThem       = function(input){
+        state = this.isEmpty(input);
+
+        if(state !== true)
+        {
+            msg.hide();
+            this.createObject(input);
+        }
+    };
+
     /**
      * this is helper function to call rendering method of mustache
      * @param url - the url to load the document
@@ -54,7 +66,7 @@ function Utils()
 
         $("#templates").load(""+ url +"", function(){
             var template = document.getElementById(''+ tempateId +'').innerHTML;
-            var output = Mustache.render(template, data);
+            var output = Mustache.render(template, { arr: data});
             list.empty();
             list.prepend(output);
         });
@@ -81,12 +93,14 @@ function Utils()
 function Adapt(storage, input)
 {
     // variable that sets way of storage
-    var storage       = storage;
-    var input         = input;
+    var storage          = storage;
+    var inputVal         = input;
+    var state;
 
     //Objects initialization
     this.todoObj       = new Todo();
-    var databaseObj   = new DatabaseStorage();
+    this.utilObj       = new Utils();
+    var databaseObj    = new DatabaseStorage();
 
     //function that delegates which delete method to call
     this.deleteNode    = function(){
@@ -100,8 +114,13 @@ function Adapt(storage, input)
 
     //adds input field value to cookie or to database
     this.addInput       = function(){
-       if( input === 'cookie')
+       if( storage === 'cookie')
        {
+           this.utilObj.callThem(inputVal);
+       }
+       else
+       {
+           databaseObj.addToDatabase(inputVal);
 
        }
     };

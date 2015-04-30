@@ -66,5 +66,10 @@ function DatabaseStorage()
 
     };
 
+    //add input to database
+    this.addToDatabase    = function(){
+
+    };
+
 
 }
