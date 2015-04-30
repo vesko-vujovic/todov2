@@ -40,6 +40,10 @@ function Adapter(adapterType)
             var value = cookieAdapter.readTheCookie();
             return value;
         }
+        else
+        {
+
+        }
     };
 
     // deletes a node from the DOM
