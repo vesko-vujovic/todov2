@@ -18,11 +18,13 @@ function DatabaseAdapter()
 
       function getData(data)
       {
-         value = data;
+          console.log(data);
       }
-      console.log(this.value);
+
 
   };
+
+
 
   //deleting specified task from database
   this.deleteTask       = function(){
