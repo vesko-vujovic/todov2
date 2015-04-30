@@ -40,17 +40,6 @@ function Utils()
         this.addObjectToArray(this.obj);
     };
 
-    //function that will call  all other functions (createObject and addObjectToArray)
-    this.callThem       = function(input){
-        state = this.isEmpty(input);
-
-        if(state !== true)
-        {
-            msg.hide();
-            this.createObject(input);
-        }
-    };
-
     /**
      * this is helper function to call rendering method of mustache
      * @param url - the url to load the document
