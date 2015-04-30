@@ -42,8 +42,8 @@ function Todo()
     this.deleteOneTask     = function (object) {
        if(adapterType === 'cookie')
        {
-           //this.adapter.deleteNode(event);
-           console.log(object);
+           this.adapter.deleteNode(object);
+
        }
     };
 

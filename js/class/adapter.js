@@ -43,10 +43,10 @@ function Adapter(adapterType)
     };
 
     // deletes a node from the DOM
-    this.deleteNode     = function(){
+    this.deleteNode     = function(object){
         if(adapterType === 'cookie')
         {
-            cookieAdapter.deleteTask();
+            cookieAdapter.deleteTask(object);
         }
     }
 
