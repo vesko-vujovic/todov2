@@ -1,18 +1,27 @@
 /**
  * General adapter that will call cookie or database adapter based on parameter that is passed
  */
-function Adapter(adapterName)
+function Adapter(adapterType)
 {
     //initialize objects of adapters
-    var db       = new DatabaseAdapter();
-    var cookie   = new CookieAdapter();
+    var dbAdapter       = new DatabaseAdapter();
+    var cookieAdapter   = new CookieAdapter();
 
     //type of adapter
-    var adapter = adapterName;
+    var adapterType = adapterType;
 
     //function that will delegate which adapter to call
     this.addTask          = function(input){
-
+       if(adapterType === 'cookie')
+       {
+          var value = cookieAdapter.addTaskSteps(input);
+          return value;
+       }
+       else
+       {
+          var value =  dbAdapter.adTask();
+          return value;
+       }
     };
 
     //function that will delegate which adapter delete method to call

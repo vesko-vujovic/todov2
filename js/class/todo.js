@@ -6,6 +6,7 @@ function Todo()
     //Global variables for this function
     var cookieName         = 'bild';
     var state;
+    var returnedVal;
     this.utilsObj          = new Utils();
     this.adapter           = new Adapter('cookie');
 
@@ -21,7 +22,7 @@ function Todo()
 
       if(state !== true)
       {
-          this.adapter.addTask(input);
+         returnedVal = this.adapter.addTask(input);
       }
 
     };
