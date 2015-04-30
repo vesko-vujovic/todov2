@@ -8,7 +8,6 @@ function Utils()
     var msg               = $('#danger').hide();
     var converted;
     var list             = $('#list');
-    var state;
     this.arrayOfObj       = [];
     this.obj;
 
