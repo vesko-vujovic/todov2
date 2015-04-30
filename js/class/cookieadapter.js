@@ -4,6 +4,7 @@
 function CookieAdapter()
 {
     //our global variables
+    var parsedCookie;
     var cookieName        = 'bild';
     this.arrayOfObj       = [];
     this.obj;
@@ -12,9 +13,10 @@ function CookieAdapter()
     //this function will call other functions that we need for adding task to cookie
     this.addTaskSteps           = function(input) {
 
-        //these are json objects returned from last function readcookie
-       var valueOfCookie = this.createObject(input);
-       console.log(valueOfCookie);
+        //parsedcookie is a parsed json string ready to read
+        this.createObject(input);
+        return parsedCookie;
+
     };
 
     //deleting specified node
@@ -78,11 +80,8 @@ function CookieAdapter()
 
     this.readTheCookie   = function(){
 
-        var parsedCookie = $.parseJSON($.cookie(''+ cookieName +''));
-        return parsedCookie;
-
-        console.log(parsedCookie)
-
+       parsedCookie  = $.parseJSON($.cookie(''+ cookieName +''));
+        console.log(parsedCookie);
     };
 
 
