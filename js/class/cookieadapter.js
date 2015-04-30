@@ -34,7 +34,7 @@ function CookieAdapter()
      * Here we have functions that will create oobjects, push them on array,
      * convert them to json string and add them to cookie(because cookie only can store strings)
      * after that we pass json object to Adapter and adapter to other functions that know how to
-     * render those data.
+     * render passed data.
      */
 
     /**
@@ -82,10 +82,5 @@ function CookieAdapter()
        parsedCookie  = $.parseJSON($.cookie(''+ cookieName +''));
        return parsedCookie;
     };
-
-
-
-
-
-
+    
 }

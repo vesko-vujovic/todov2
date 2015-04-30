@@ -53,7 +53,7 @@ function Adapter(adapterType)
 
         }
 
-    }
+    };
 
     //delete checked values from the DOM
     this.deleteChecked  = function(object){
@@ -61,7 +61,9 @@ function Adapter(adapterType)
         {
             cookieAdapter.deleteCompleted(object);
         }
+        else
+        {
 
+        }
     }
-
 }
