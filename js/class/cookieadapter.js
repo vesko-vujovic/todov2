@@ -21,7 +21,7 @@ function CookieAdapter()
 
     //deleting specified node
     this.deleteTask             = function(){
-
+        $(this).parent().remove();
     };
 
     //delete checked tasks

@@ -46,7 +46,6 @@ function Todo()
     //this is a function that will call the display function data after reload
     this.afterRefresh     = function(){
        returnedVal = this.adapter.after();
-        console.log(returnedVal);
        this.renderView(returnedVal);
 
     }

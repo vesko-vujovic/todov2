@@ -44,7 +44,10 @@ function Adapter(adapterType)
 
     // deletes a node from the DOM
     this.deleteNode     = function(){
-        $(this).parent().remove();
+        if(adapterType === 'cookie')
+        {
+            cookieAdapter.deleteTask();
+        }
     }
 
     //delete checked values from the DOM

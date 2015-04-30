@@ -10,6 +10,8 @@ $(document).ready(function(){
         todoObject.callAdd(input.val());
         input.val('');
     });
+    //delete task event
+    $(document).on('click','.delete', todoObject.adapter.deleteNode)
 
 
 });
