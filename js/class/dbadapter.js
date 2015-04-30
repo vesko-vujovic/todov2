@@ -13,28 +13,16 @@ function DatabaseAdapter()
           url: "/todoback/public/ajax/post/data",
           data: "input=" + input,
           dataType: "json",
-          success: getData
+          success: function(data)
+          {
+              //here i'm using cookie to store this because i can't get from ajax response function
+              $.cookie('ajax', JSON.stringify(data));
+          }
       });
+      value = $.parseJSON($.cookie('ajax'));
+      return value;
 
-      function getData(data)
-      {
-          setData(data);
-          return;
-      }
-
-      console.log(value);
   };
-
-    /**
-     *  I need this function to set data from ajax response to my global variable because
-     *  ajax is asynchronous, the only way is to make it non-asynchronous but that not recomendable
-     *  and deprecated
-     */
-  function setData(data){
-      value = data;
-      return;
-  }
-
 
 
   //deleting specified task from database
