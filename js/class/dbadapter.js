@@ -5,7 +5,7 @@ function DatabaseAdapter()
 {
 
   //adding a task to the database
-  this.adTask           = function() {
+  this.addTask           = function() {
 
   };
 

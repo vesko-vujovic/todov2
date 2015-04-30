@@ -5,10 +5,11 @@ function Todo()
 {
     //Global variables for this function
     var cookieName         = 'bild';
+    var adapterType        = 'cookie';
     var state;
     var returnedVal;
     this.utilsObj          = new Utils();
-    this.adapter           = new Adapter('cookie');
+    this.adapter           = new Adapter(adapterType);
 
 
     /**
