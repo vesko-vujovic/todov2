@@ -81,7 +81,6 @@ function CookieAdapter()
     this.readTheCookie   = function(){
 
        parsedCookie  = $.parseJSON($.cookie(''+ cookieName +''));
-        console.log(parsedCookie);
     };
 
 
