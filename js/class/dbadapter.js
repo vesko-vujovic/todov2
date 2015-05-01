@@ -7,6 +7,7 @@ function DatabaseAdapter()
     var utilObj   = new Utils();
     var chained;
     var value;
+    var checkedValues;
 
   //adding a task to the database
   this.addSingleTask           = function(input) {
@@ -73,7 +74,7 @@ function DatabaseAdapter()
 
   //pick up selected ids
   this.pickUpIds        = function(){
-      var checkedValues = $('.check:checked').map(function() {
+      checkedValues = $('.check:checked').map(function() {
           return this.value;
       }).get();
       return checkedValues

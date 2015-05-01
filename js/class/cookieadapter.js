@@ -28,7 +28,7 @@ function CookieAdapter()
         //this is text value from the clicked element
         elementValue =  $(object).prevAll('span').text();
         this.removeObjectFromTheCookie(elementValue);
-        console.log(elementValue);
+
         return data;
 
     };

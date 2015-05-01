@@ -5,7 +5,7 @@ function Todo()
 {
     //Global variables for this function
     var cookieName         = 'bild';
-    var adapterType        = 'cookie';
+    var adapterType        = 'db';
     var state;
     var url;
     var templateId;
