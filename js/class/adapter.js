@@ -39,7 +39,8 @@ function Adapter(adapterType)
         }
         else
         {
-
+            var value = dbAdapter.getDataAfterRefresh();
+            return value;
         }
     };
 

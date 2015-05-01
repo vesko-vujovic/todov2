@@ -24,6 +24,10 @@ function DatabaseAdapter()
 
   };
 
+  //get the data after refresh
+  this.getDataAfterRefresh     = function(){
+      return value = $.parseJSON($.cookie('ajax'));
+  };
 
   //deleting specified task from database
   this.deleteTask       = function(){
