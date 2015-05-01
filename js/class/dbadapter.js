@@ -11,55 +11,53 @@ function DatabaseAdapter()
   //adding a task to the database
   this.addSingleTask           = function(input) {
       $.ajax({
+          async: false,
           url: "/todoback/public/ajax/post/data",
           data: "input=" + input,
           dataType: "json",
           success: function(data)
           {
-              //here i'm using cookie to store this because i can't get from ajax response function
-              $.cookie('ajax', JSON.stringify(data));
+              value = data;
           }
       });
-      value = $.parseJSON($.cookie('ajax'));
       return value;
   };
 
   //get the data after refresh
   this.getDataAfterRefresh     = function(){
-      var dataValue;
       $.ajax({
+          async: false,
           url: "/todoback/public/ajax/get/data",
           dataType: "json",
           success: function(data)
           {
-              dataValue = data;
+              value = data;
           }
       });
-      utilObj.sleep(1000);
-      console.log('stampa vrijednosti');
-      console.log(dataValue);
-      return dataValue;
-  };
 
-  //deleting specified task from database object is DOM element
-  this.deleteTask       = function(object){
-    var idValue = $(object).prevAll('.check').val();
-
-  };
-
-  //delete selected tasks
-  this.deleteCompleted   = function(){
-      $.ajax({
-          url: "/todoback/public/ajax/delete/task",
-          data: "id=" + idValue,
-          dataType: "json",
-          success: function(data)
-          {
-              $.cookie('ajax', JSON.stringify(data));
-          }
-      });
-      value = $.parseJSON($.cookie('ajax'));
       return value;
+  };
+
+    //deleting specified task from database object is DOM element
+    this.deleteTask       = function(object){
+        var idValue = $(object).prevAll('.check').val();
+        $.ajax({
+            async: false,
+            url: "/todoback/public/ajax/delete/task",
+            data: "id=" + idValue,
+            dataType: "json",
+            success: function(data)
+            {
+                value = data;
+            }
+        });
+        return value;
+    };
+
+
+    //delete selected tasks
+  this.deleteCompleted   = function(){
+
   }
 
 

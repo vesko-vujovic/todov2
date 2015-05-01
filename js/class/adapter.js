@@ -53,8 +53,8 @@ function Adapter(adapterType)
         }
         else
         {
-            dbAdapter.deleteTask(object);
-
+            var value = dbAdapter.deleteTask(object);
+            return value;
         }
 
     };
