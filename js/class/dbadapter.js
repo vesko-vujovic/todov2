@@ -5,6 +5,7 @@ function DatabaseAdapter()
 {
     //global varijables
     var utilObj   = new Utils();
+    var chained;
     var value;
 
   //adding a task to the database
@@ -19,9 +20,8 @@ function DatabaseAdapter()
               $.cookie('ajax', JSON.stringify(data));
           }
       });
-      value = $.parseJSON($.cookie('add'));
+      value = $.parseJSON($.cookie('ajax'));
       return value;
-
   };
 
   //get the data after refresh
@@ -34,14 +34,19 @@ function DatabaseAdapter()
               $.cookie('ajax', JSON.stringify(data));
           }
       });
-      value = $.parseJSON($.cookie('after'));
+      utilObj.sleep();
+      value = $.parseJSON($.cookie('ajax'));
       return value;
-
   };
 
   //deleting specified task from database object is DOM element
   this.deleteTask       = function(object){
     var idValue = $(object).prevAll('.check').val();
+
+  };
+
+  //delete selected tasks
+  this.deleteCompleted   = function(){
       $.ajax({
           url: "/todoback/public/ajax/delete/task",
           data: "id=" + idValue,
@@ -51,11 +56,8 @@ function DatabaseAdapter()
               $.cookie('ajax', JSON.stringify(data));
           }
       });
-  };
-
-  //delete selected tasks
-  this.deleteCompleted   = function(){
-
+      value = $.parseJSON($.cookie('ajax'));
+      return value;
   }
 
 

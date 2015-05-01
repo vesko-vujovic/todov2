@@ -6,7 +6,7 @@ function Adapter(adapterType)
     //initialize objects of adapters
     var dbAdapter       = new DatabaseAdapter();
     var cookieAdapter   = new CookieAdapter();
-    var valueAjax           = [];
+    var utilObj         = Utils();
 
     //type of adapter
     var adapterType     = adapterType;
@@ -20,9 +20,9 @@ function Adapter(adapterType)
        }
        else
        {
-          var value =  dbAdapter.addSingleTask(input);
-          return value;
 
+          var value = dbAdapter.addSingleTask(input)
+          return value;
        }
     };
 
