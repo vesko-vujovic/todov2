@@ -53,6 +53,7 @@ function Adapter(adapterType)
         }
         else
         {
+            dbAdapter.deleteTask(object);
 
         }
 

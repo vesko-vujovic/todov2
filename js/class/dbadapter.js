@@ -29,9 +29,14 @@ function DatabaseAdapter()
       return value = $.parseJSON($.cookie('ajax'));
   };
 
-  //deleting specified task from database
-  this.deleteTask       = function(){
-
+  //deleting specified task from database object is DOM element
+  this.deleteTask       = function(object){
+    var idValue = $(object).prevAll('.check').val();
+      $.ajax({
+          url: "/todoback/public/ajax/delete/task",
+          data: "id=" + idValue,
+          dataType: "json"
+      });
   };
 
   //delete selected tasks

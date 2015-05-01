@@ -50,8 +50,6 @@ function Todo()
         this.adapter.deleteChecked(object);
     };
 
-
-
     //display data on screen
     this.renderView       = function(data){
       this.utilsObj.helperMustache(url, templateId, returnedVal);
