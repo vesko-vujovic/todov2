@@ -57,7 +57,7 @@ function DatabaseAdapter()
 
   //delete selected tasks
   this.deleteCompleted   = function(){
-      var ids = this.pickUpIds()
+      var ids = this.pickUpIds();
       $.ajax({
           url: "/todoback/public/ajax/delete/group",
           data: "ids=" + JSON.stringify(ids),
