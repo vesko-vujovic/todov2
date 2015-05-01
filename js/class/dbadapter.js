@@ -16,7 +16,7 @@ function DatabaseAdapter()
           success: function(data)
           {
               //here i'm using cookie to store this because i can't get from ajax response function
-              $.cookie('ajax', JSON.stringify(data));
+
           }
       });
       value = $.parseJSON($.cookie('ajax'));
@@ -26,7 +26,15 @@ function DatabaseAdapter()
 
   //get the data after refresh
   this.getDataAfterRefresh     = function(){
-      return value = $.parseJSON($.cookie('ajax'));
+      $.getJSON("/todoback/public/ajax/get/data", {}, function(data) {
+
+           $.cookie('after', JSON.stringify(data));
+      });
+      value = $.parseJSON($.cookie('after'));
+
+      return value;
+
+
   };
 
   //deleting specified task from database object is DOM element
