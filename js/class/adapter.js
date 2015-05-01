@@ -49,14 +49,15 @@ function Adapter(adapterType)
     this.deleteNode     = function(object){
         if(adapterType === 'cookie')
         {
-            cookieAdapter.deleteTask(object);
+            var value = cookieAdapter.deleteTask(object);
+            return value;
         }
         else
         {
             var value = dbAdapter.deleteTask(object);
             return value;
-        }
 
+        }
     };
 
     //delete checked values from the DOM

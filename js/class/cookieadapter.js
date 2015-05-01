@@ -26,8 +26,9 @@ function CookieAdapter()
 
         //this is text value from the clicked element
         elementValue =  $(object).prevAll('span').text();
-
         this.removeObjectFromTheCookie(elementValue);
+        console.log(elementValue);
+        return data;
 
     };
 
@@ -43,12 +44,13 @@ function CookieAdapter()
 
         //this is a loop that matches the finds value of object and removes that object from array
         for(var i = 0; i < data.length; i++) {
-            if(data[i].value == value) {
+            if(data[i].value === ''+ value +'') {
                 data.splice(i, 1);
                 break;
             }
         }
-        console.log(data);
+        $.cookie(''+cookieName+'',JSON.stringify(data));
+        
         return data;
 
 
