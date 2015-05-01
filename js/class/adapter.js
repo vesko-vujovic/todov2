@@ -64,7 +64,8 @@ function Adapter(adapterType)
     this.deleteChecked  = function(object){
         if(adapterType === 'cookie')
         {
-            cookieAdapter.deleteCompleted(object);
+            var value =  cookieAdapter.deleteCompleted(object);
+            return value;
         }
         else
         {
