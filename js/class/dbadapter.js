@@ -36,6 +36,7 @@ function DatabaseAdapter()
           }
       });
       utilObj.sleep(1000);
+      console.log('stampa vrijednosti');
       console.log(dataValue);
       return dataValue;
   };
