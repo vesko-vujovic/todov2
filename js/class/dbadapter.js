@@ -26,16 +26,18 @@ function DatabaseAdapter()
 
   //get the data after refresh
   this.getDataAfterRefresh     = function(){
+      var dataValue;
       $.ajax({
           url: "/todoback/public/ajax/get/data",
           dataType: "json",
           success: function(data)
           {
-              value = data;
+              dataValue = data;
           }
       });
       utilObj.sleep(1000);
-      return value;
+      console.log(dataValue);
+      return dataValue;
   };
 
   //deleting specified task from database object is DOM element
