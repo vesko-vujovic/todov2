@@ -48,16 +48,8 @@ function Todo()
     //delete selected tasks
     this.deleteSelection   = function(object){
 
-        if(adapterType === 'db')
-        {
-            returnedVal = this.adapter.deleteNode(object);
-            this.renderView(returnedVal);
-        }
-        else
-        {
-            returnedVal = this.adapter.deleteChecked(object);
-            this.renderView(returnedVal);
-        }
+          returnedVal = this.adapter.deleteChecked(object);
+          this.renderView(returnedVal)
     };
 
     //display data on screen

@@ -6,7 +6,7 @@ function CookieAdapter()
     //our global variables
     var parsedCookie;
     var elementValue;
-    var checkedValues;
+    var checkedValues     = [];
     var data;
     var cookieName        = 'bild';
     this.arrayOfObj       = [];
@@ -35,17 +35,38 @@ function CookieAdapter()
 
     //delete checked tasks
     this.deleteCompleted              = function(object){
-        this.removeSelectedFromCookie(object);
+        data          = $.parseJSON($.cookie(''+cookieName+''));
+        checkedValues = this.pickUpSelectedElements(object);
+
+        /**
+         * This is loop in loop, it deletes array of items in array of objects
+         * It finds objects value, then compares it with other object, and if we have
+         * match the item is deletes, else the loop continues
+         */
+        for(var i = 0; i < data.length; i++) {
+
+            for(var j =0; j < checkedValues.length; j++)
+            {
+                if(data[i].value === ''+ checkedValues[j] +'')
+                {
+                    data.splice(i, 1);
+                    break;
+                }
+
+            }
+        }
+        //add modified data to cookie and return that new array
+        $.cookie(''+ cookieName +'', JSON.stringify(data));
+        return data;
     };
 
-
-
+    //this function will make an array of checked values
     this.pickUpSelectedElements    = function(object){
-      checkedValues =  $('input:checked ~ span').text().map(function() {
-            return this.value;
-        }).get();
 
-        console.log(checkedValues);
+        checkedValues = $('input:checked ~ span').map(function() {
+            return $(this).text();
+        }).get();
+        return checkedValues;
     };
 
     //this function will remove specified object from array
@@ -64,10 +85,6 @@ function CookieAdapter()
 
         return data;
     };
-
-    //remove group of objects from the cookie
-
-
 
     /**
      * These section is for preparing array of objects to be added into the cookie

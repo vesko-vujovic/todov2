@@ -26,11 +26,7 @@ function Adapter(adapterType)
        }
     };
 
-    //calling adapter delete method for checked checkboxes
-    this.deleteCompleted = function(){
-
-    };
-
+    //loading of data after refreshing the page
     this.after           = function(){
         if(adapterType === 'cookie')
         {
