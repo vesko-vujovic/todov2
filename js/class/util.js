@@ -72,7 +72,7 @@ function Utils()
     /**
      * small sleep function that will delay execution of other function
      */
-    this.sleep            = function(){
+    this.sleep            = function(milliseconds){
         var start = new Date().getTime();
         for (var i = 0; i < 1e7; i++) {
             if ((new Date().getTime() - start) > milliseconds){

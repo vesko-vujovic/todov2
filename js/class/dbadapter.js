@@ -31,11 +31,10 @@ function DatabaseAdapter()
           dataType: "json",
           success: function(data)
           {
-              $.cookie('ajax', JSON.stringify(data));
+              value = data;
           }
       });
-      utilObj.sleep();
-      value = $.parseJSON($.cookie('ajax'));
+      utilObj.sleep(1000);
       return value;
   };
 
