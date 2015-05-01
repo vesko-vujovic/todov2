@@ -17,7 +17,8 @@ function Todo()
     adapterType === 'cookie' ? url = 'templates/template.html #after': url = 'templates/template.html #ajax1';
 
     //same thing with template id we have 2 different ids for cookie and for ajax template
-    adapterType === 'cookie' ? templateId = 'after': url = 'ajax1';
+    adapterType === 'cookie' ? templateId = 'after': templateId = 'ajax1';
+    
 
 
     /**
