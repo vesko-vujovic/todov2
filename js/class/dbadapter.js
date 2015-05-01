@@ -55,10 +55,31 @@ function DatabaseAdapter()
     };
 
 
-    //delete selected tasks
+  //delete selected tasks
   this.deleteCompleted   = function(){
+      var ids = this.pickUpIds()
+      $.ajax({
+          url: "/todoback/public/ajax/delete/group",
+          data: "ids=" + JSON.stringify(ids),
+          dataType: "json",
+          success: function(data)
+          {
+              value = data;
+          }
+      });
 
+      return value;
+  };
+
+  //pick up selected ids
+  this.pickUpIds        = function(){
+      var checkedValues = $('.check:checked').map(function() {
+          return this.value;
+      }).get();
+      return checkedValues
   }
+
+
 
 
 }

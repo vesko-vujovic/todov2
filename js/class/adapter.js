@@ -67,6 +67,8 @@ function Adapter(adapterType)
         }
         else
         {
+            var value = dbAdapter.deleteCompleted(object);
+            return value;
 
         }
     }
