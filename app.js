@@ -7,7 +7,7 @@ $(document).ready(function(){
     //events on actions
     $('#add').on('click', function (event) {
         event.preventDefault();
-        todoObject.callAdd(input.val());
+        todoObject.Add(input.val());
         input.val('');
     });
     //delete task event

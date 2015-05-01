@@ -5,7 +5,7 @@ function Todo()
 {
     //Global variables for this function
     var cookieName         = 'bild';
-    var adapterType        = 'db';
+    var adapterType        = 'cookie';
     var state;
     var url;
     var templateId;
@@ -20,13 +20,12 @@ function Todo()
     adapterType === 'cookie' ? templateId = 'after': templateId = 'ajax1';
 
 
-
     /**
      * this function first checks if we have something in the field, if we do then call main Adapter add function
      * from there adapter will call storage adapter or database adapter
      * @param input - text value from input field
      */
-    this.callAdd           = function (input) {
+    this.Add           = function (input) {
 
       state =  this.utilsObj.isEmpty(input);
 
@@ -41,15 +40,8 @@ function Todo()
 
     //delete task if we have cookie adapter then i need to pass event object
     this.deleteOneTask     = function (object) {
-        if(adapterType === 'db')
-        {
-            returnedVal = this.adapter.deleteNode(object);
-            this.renderView(returnedVal);
-        }
-        else
-        {
+
             this.adapter.deleteNode(object);
-        }
 
     };
 

@@ -5,6 +5,7 @@ function CookieAdapter()
 {
     //our global variables
     var parsedCookie;
+    var elementValue;
     var cookieName        = 'bild';
     this.arrayOfObj       = [];
     this.obj;
@@ -22,12 +23,21 @@ function CookieAdapter()
     //deleting specified node
     this.deleteTask             = function(object){
         $(object).parent().remove();
+
+        //this is text from the clicked element
+        elementValue =  $(object).prevAll('span').text();
+
     };
 
     //delete checked tasks
-    this.deleteCompleted        = function(object){
+    this.deleteCompleted              = function(object){
         $('input:checked').parent().remove();
     };
+
+    //this function will remove
+    this.removeObjectFromTheCookie    = function(){
+
+    }
 
     /**
      * These section is for preparing array of objects to be added into the cookie
@@ -82,5 +92,7 @@ function CookieAdapter()
        parsedCookie  = $.parseJSON($.cookie(''+ cookieName +''));
        return parsedCookie;
     };
+
+    
 
 }
