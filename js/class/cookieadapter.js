@@ -6,6 +6,7 @@ function CookieAdapter()
     //our global variables
     var parsedCookie;
     var elementValue;
+    var data;
     var cookieName        = 'bild';
     this.arrayOfObj       = [];
     this.obj;
@@ -20,12 +21,13 @@ function CookieAdapter()
 
     };
 
-    //deleting specified node
+    //deleting specified node here we call function that will delete that value from cookie
     this.deleteTask             = function(object){
-        $(object).parent().remove();
 
-        //this is text from the clicked element
+        //this is text value from the clicked element
         elementValue =  $(object).prevAll('span').text();
+
+        this.removeObjectFromTheCookie(elementValue);
 
     };
 
@@ -34,8 +36,21 @@ function CookieAdapter()
         $('input:checked').parent().remove();
     };
 
-    //this function will remove
-    this.removeObjectFromTheCookie    = function(){
+    //this function will remove specified object from array
+    this.removeObjectFromTheCookie    = function(value){
+
+        data = $.parseJSON($.cookie(''+cookieName+''));
+
+        //this is a loop that matches the finds value of object and removes that object from array
+        for(var i = 0; i < data.length; i++) {
+            if(data[i].value == value) {
+                data.splice(i, 1);
+                break;
+            }
+        }
+        console.log(data);
+        return data;
+
 
     }
 
@@ -93,6 +108,6 @@ function CookieAdapter()
        return parsedCookie;
     };
 
-    
+
 
 }
